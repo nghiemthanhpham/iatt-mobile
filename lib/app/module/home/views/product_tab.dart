@@ -2,8 +2,8 @@ import 'package:iatt/app/module/home/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class HomeTab extends GetView<HomeController> {
-  const HomeTab({super.key});
+class ProductTab extends GetView<HomeController> {
+  const ProductTab({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class HomeTab extends GetView<HomeController> {
         children: [
           SizedBox(height: 40),
           Text(
-            'Home Tab',
+            'Product Tab',
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,

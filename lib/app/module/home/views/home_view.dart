@@ -3,6 +3,7 @@ import 'package:iatt/app/module/home/views/home_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:iatt/app/module/home/views/product_tab.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -23,7 +24,7 @@ class HomeView extends GetView<HomeController> {
         index: controller.selectedIndex.value,
         children: const [
           HomeTab(),
-          HomeTab(),
+          ProductTab(),
           HomeTab(),
           HomeTab(),
           HomeTab(),
