@@ -1,14 +1,15 @@
-import 'package:get/get.dart';
 import 'package:iatt/app/routes/app_pages.dart';
+import 'package:get/get.dart';
 
-class HomeController extends GetxController {
+class FrameController extends GetxController {
+  RxInt selectedIndex = 0.obs;
 
-  void navigateToFrame() {
-    Get.toNamed(Routes.FRAME);
+  void changePage(int index) {
+    selectedIndex.value = index;
   }
 
-  void navigateToAlbum() {
-    Get.toNamed(Routes.ALBUM);
+  void navigateToSignIn() {
+    Get.toNamed(Routes.HOME);
   }
 
   @override

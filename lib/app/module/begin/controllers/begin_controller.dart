@@ -1,14 +1,12 @@
 import 'package:get/get.dart';
 import 'package:iatt/app/routes/app_pages.dart';
 
-class HomeController extends GetxController {
+class BeginController extends GetxController {
 
-  void navigateToFrame() {
-    Get.toNamed(Routes.FRAME);
-  }
-
-  void navigateToAlbum() {
-    Get.toNamed(Routes.ALBUM);
+  void autoNavigateToHome() {
+    Future.delayed(const Duration(seconds: 2), () {
+      Get.offNamed(Routes.HOME);
+    });
   }
 
   @override
