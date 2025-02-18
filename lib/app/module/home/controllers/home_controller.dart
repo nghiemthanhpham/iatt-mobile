@@ -10,19 +10,4 @@ class HomeController extends GetxController {
   void navigateToAlbum() {
     Get.toNamed(Routes.ALBUM);
   }
-
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
 }
