@@ -1,0 +1,2 @@
+/Users/hieunguyencong/Documents/JOB/N/iatt/iatt-mobile/android/app/.cxx/Debug/6q4v714s/arm64-v8a/CMakeFiles/edit_cache.dir
+/Users/hieunguyencong/Documents/JOB/N/iatt/iatt-mobile/android/app/.cxx/Debug/6q4v714s/arm64-v8a/CMakeFiles/rebuild_cache.dir

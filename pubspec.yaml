@@ -1,10 +1,10 @@
 name: iatt
 description: In Ảnh Trực Tuyến.
-publish_to: 'none'
+publish_to: "none"
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.2.0 <4.0.0'
+  sdk: ">=3.2.0 <4.0.0"
 
 dependencies:
   flutter:
@@ -34,9 +34,9 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  fonts: 
+  fonts:
     - family: Pretendard
-      fonts: 
+      fonts:
         - asset: assets/fonts/Pretendard/Pretendard-Black.otf
         - asset: assets/fonts/Pretendard/Pretendard-Bold.otf
         - asset: assets/fonts/Pretendard/Pretendard-ExtraBold.otf
@@ -47,6 +47,6 @@ flutter:
         - asset: assets/fonts/Pretendard/Pretendard-SemiBold.otf
         - asset: assets/fonts/Pretendard/Pretendard-Thin.otf
   assets:
-    - .env
+    # - .env
     - assets/images/
     - assets/icons/
