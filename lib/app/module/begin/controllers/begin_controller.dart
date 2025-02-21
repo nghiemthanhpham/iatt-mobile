@@ -3,7 +3,7 @@ import 'package:iatt/app/routes/app_pages.dart';
 
 class BeginController extends GetxController {
   void autoNavigateToHome() {
-    Future.delayed(const Duration(seconds: 10), () {
+    Future.delayed(const Duration(seconds: 2), () {
       Get.offNamed(Routes.HOME);
     });
   }

@@ -28,7 +28,7 @@ class HomeView extends GetView<HomeController> {
 
   Widget _buildAppBar(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 120),
+      padding: const EdgeInsets.symmetric(horizontal: 35),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -37,12 +37,11 @@ class HomeView extends GetView<HomeController> {
           Column(children: [
             Image.asset(
               AppImages.logo,
-              width: 70,
+              width: 60,
             ),
             Image.asset(
               AppImages.title,
-              width: 1000,
-              height: 100,
+              width: 350,
             ),
           ]),
           const SizedBox(height: 16),
