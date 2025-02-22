@@ -18,6 +18,7 @@ class HomeView extends GetView<HomeController> {
             child: Image.asset(
               AppImages.background,
               fit: BoxFit.cover,
+              opacity: const AlwaysStoppedAnimation(0.5),
             ),
           ),
           _buildObx(context),
@@ -27,18 +28,19 @@ class HomeView extends GetView<HomeController> {
   }
 
   Widget _buildObx(BuildContext context) {
-    return Obx(
-      () => Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          _buildLogo(context),
-          SizedBox(height: 12.h),
-          _buildBody(context),
-          SizedBox(height: 20.h),
-          _buildMadeBy(context),
-        ],
-      ),
+    return
+        // Obx(() =>
+        Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        _buildLogo(context),
+        SizedBox(height: 12.h),
+        _buildBody(context),
+        SizedBox(height: 20.h),
+        _buildMadeBy(context),
+      ],
+      // ),
     );
   }
 
@@ -68,15 +70,15 @@ class HomeView extends GetView<HomeController> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               GestureDetector(
-                onTap: () => controller.changeTitle("Home nè"),
+                onTap: () => controller.navigateToFrame(),
                 child: Container(
                   width: 60.w,
                   height: 10.h,
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                      const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
                   decoration: BoxDecoration(
                     color: AppColors.primary,
-                    borderRadius: BorderRadius.circular(22),
+                    borderRadius: BorderRadius.circular(15),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black.withOpacity(0.1),
@@ -85,29 +87,35 @@ class HomeView extends GetView<HomeController> {
                       ),
                     ],
                   ),
-                  child: Column(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          controller.title.value,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18,
+                      const Padding(
+                        padding: EdgeInsets.only(top: 14, left: 14),
+                        child: Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            "Chỉnh sửa",
+                            // controller.title.value,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 18,
+                            ),
                           ),
                         ),
                       ),
-                      const Align(
-                        alignment: Alignment.bottomRight,
-                        child: Icon(
-                          Icons.picture_in_picture,
-                          color: Colors.white,
-                          size: 30,
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 14),
+                        child: Align(
+                          alignment: Alignment.bottomRight,
+                          child: Image.asset(
+                            AppImages.frame_assets,
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                      ),
+                      )
                     ],
                   ),
                 ),
@@ -126,11 +134,11 @@ class HomeView extends GetView<HomeController> {
                     ),
                   ],
                 ),
-                child: const Center(
-                  child: Icon(
-                    Icons.filter_frames,
-                    color: Color.fromARGB(255, 63, 33, 234),
-                    size: 30,
+                child: Center(
+                  child: Image.asset(
+                    AppImages.hold_image,
+                    fit: BoxFit.cover,
+                    width: 6.w,
                   ),
                 ),
               ),
@@ -154,56 +162,58 @@ class HomeView extends GetView<HomeController> {
                     ),
                   ],
                 ),
-                child: const Center(
-                  child: Icon(
-                    Icons.filter_frames,
-                    color: Color.fromARGB(255, 63, 33, 234),
-                    size: 30,
+                child: Center(
+                  child: Image.asset(
+                    AppImages.hold_image,
+                    fit: BoxFit.cover,
+                    width: 6.w,
                   ),
                 ),
               ),
-              Container(
-                width: 60.w,
-                height: 10.h,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-                decoration: BoxDecoration(
-                  color: AppColors.secondary,
-                  borderRadius: BorderRadius.circular(22),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      blurRadius: 10,
-                      offset: const Offset(0, 5),
-                    ),
-                  ],
-                ),
-                child: const Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Align(
-                      alignment: Alignment.topRight,
-                      child: Text(
-                        'Ghép hình',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 18,
+              GestureDetector(
+                onTap: () => controller.navigateToAlbum(),
+                child: Container(
+                  width: 60.w,
+                  height: 10.h,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+                  decoration: BoxDecoration(
+                    color: AppColors.secondary,
+                    borderRadius: BorderRadius.circular(22),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.1),
+                        blurRadius: 10,
+                        offset: const Offset(0, 5),
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Align(
+                        alignment: Alignment.bottomLeft,
+                        child: Image.asset(
+                          AppImages.frame_album,
+                          fit: BoxFit.cover,
                         ),
                       ),
-                    ),
-                    Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Icon(
-                        Icons.album_sharp,
-                        color: Colors.white,
-                        size: 30,
+                      const Align(
+                        alignment: Alignment.topRight,
+                        child: Text(
+                          'Ghép hình',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18,
+                          ),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
+              )
             ],
           ),
         ],
@@ -212,17 +222,29 @@ class HomeView extends GetView<HomeController> {
   }
 
   Widget _buildMadeBy(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 35),
-      child: Text(
-        'Made by In Ảnh Trực Tuyến',
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          color: Colors.black87,
-          fontWeight: FontWeight.w500,
-          fontSize: 13,
+    return const Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          'Made with ',
+          style: TextStyle(
+            fontSize: 14,
+            color: Color(0xFF666666),
+          ),
         ),
-      ),
+        Icon(
+          Icons.favorite,
+          color: Colors.red,
+          size: 16,
+        ),
+        Text(
+          ' from Vietnam',
+          style: TextStyle(
+            fontSize: 14,
+            color: Color(0xFF666666),
+          ),
+        ),
+      ],
     );
   }
 }

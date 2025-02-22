@@ -15,7 +15,18 @@ class FrameView extends GetView<FrameController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: _buildBody(),
+      body: Stack(
+        children: [
+          Positioned.fill(
+            child: Image.asset(
+              AppImages.background,
+              fit: BoxFit.cover,
+              opacity: const AlwaysStoppedAnimation(0.5),
+            ),
+          ),
+          _buildBody(),
+        ],
+      ),
       bottomNavigationBar: _buildBottomNav(),
     );
   }
@@ -39,7 +50,7 @@ class FrameView extends GetView<FrameController> {
       () => Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Colors.transparent,
           border: Border(
             top: BorderSide(
               color: Colors.grey[200]!,
@@ -51,9 +62,9 @@ class FrameView extends GetView<FrameController> {
           currentIndex: controller.selectedIndex.value,
           onTap: controller.changePage,
           type: BottomNavigationBarType.fixed,
-          selectedItemColor: const Color(0xFF145496),
+          selectedItemColor: const Color.fromARGB(255, 4, 4, 4),
           unselectedItemColor: Colors.grey,
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.transparent,
           selectedLabelStyle: _buildTextStyle(),
           unselectedLabelStyle: _buildTextStyle(),
           iconSize: 24,
@@ -81,23 +92,23 @@ class FrameView extends GetView<FrameController> {
   List<BottomNavigationBarItem> _buildNavigationItems() {
     return [
       _buildNavigationItem(
-        icon: AppImages.add,
-        activeIcon: AppImages.add,
+        icon: AppImages.func_1,
+        activeIcon: AppImages.func_1_action,
         label: 'Mịn da',
       ),
       _buildNavigationItem(
-        icon: AppImages.add,
-        activeIcon: AppImages.add,
+        icon: AppImages.func_2,
+        activeIcon: AppImages.func_2_action,
         label: 'Chất lượng',
       ),
       _buildNavigationItem(
-        icon: AppImages.add,
-        activeIcon: AppImages.add,
+        icon: AppImages.func_3,
+        activeIcon: AppImages.func_3_action,
         label: 'Xoá phông',
       ),
       _buildNavigationItem(
-        icon: AppImages.add,
-        activeIcon: AppImages.add,
+        icon: AppImages.func_4,
+        activeIcon: AppImages.func_4_action,
         label: 'Tạo với A.I',
       ),
     ];
@@ -110,7 +121,7 @@ class FrameView extends GetView<FrameController> {
   }) {
     return BottomNavigationBarItem(
       icon: Builder(
-        builder: (context) => SvgPicture.asset(
+        builder: (context) => Image.asset(
           icon,
           width: 24,
           height: 24,
@@ -118,7 +129,7 @@ class FrameView extends GetView<FrameController> {
         ),
       ),
       activeIcon: Builder(
-        builder: (context) => SvgPicture.asset(
+        builder: (context) => Image.asset(
           activeIcon,
           width: 24,
           height: 24,

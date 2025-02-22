@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iatt/app/module/frame/controllers/frame_controller.dart';
+import 'package:iatt/app/module/frame/views/tabs/third_tab.dart';
 import 'app/routes/app_pages.dart';
 import 'package:iatt/app/core/app_theme.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';

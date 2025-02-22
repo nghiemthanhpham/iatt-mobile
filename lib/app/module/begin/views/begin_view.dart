@@ -52,6 +52,7 @@ class _BeginViewState extends State<BeginView>
             child: Image.asset(
               AppImages.background,
               fit: BoxFit.cover,
+              opacity: const AlwaysStoppedAnimation(0.5),
             ),
           ),
           SafeArea(
