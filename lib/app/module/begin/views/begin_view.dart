@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iatt/app/core/app_images.dart';
 import 'package:iatt/app/module/begin/controllers/begin_controller.dart';
+import 'package:iatt/app/routes/app_pages.dart';
 
 class BeginView extends StatefulWidget {
   const BeginView({super.key});
@@ -35,6 +36,10 @@ class _BeginViewState extends State<BeginView>
       begin: 0.0,
       end: 1.0,
     ).animate(_controller);
+
+    Future.delayed(const Duration(seconds: 2), () {
+      Get.offNamed(Routes.HOME);
+    });
   }
 
   @override
@@ -52,7 +57,6 @@ class _BeginViewState extends State<BeginView>
             child: Image.asset(
               AppImages.background,
               fit: BoxFit.cover,
-              opacity: const AlwaysStoppedAnimation(0.5),
             ),
           ),
           SafeArea(
@@ -78,11 +82,11 @@ class _BeginViewState extends State<BeginView>
             width: 300,
           ),
           const SizedBox(height: 25),
-          Column(
+          const Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Text(
+              Text(
                 "In ảnh chất lượng cao",
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -91,11 +95,7 @@ class _BeginViewState extends State<BeginView>
                   color: Color(0xFF616161),
                 ),
               ),
-              const SizedBox(height: 16),
-              GestureDetector(
-                onTap: () => _beginController.autoNavigateToHome(),
-                child: const Icon(Icons.send, color: Colors.white),
-              ),
+              SizedBox(height: 16),
             ],
           ),
           const Spacer(),
