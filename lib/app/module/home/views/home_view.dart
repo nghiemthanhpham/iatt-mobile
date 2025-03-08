@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:iatt/app/core/app_colors.dart';
 import 'package:iatt/app/core/app_images.dart';
@@ -11,6 +12,19 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: 0,
+        elevation: 0,
+        scrolledUnderElevation: 0,
+        backgroundColor: Colors.transparent,
+        centerTitle: true,
+        systemOverlayStyle: const SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent,
+          statusBarIconBrightness: Brightness.dark,
+          statusBarBrightness: Brightness.light,
+        ),
+        automaticallyImplyLeading: false,
+      ),
       backgroundColor: Colors.white,
       body: Stack(
         children: [
@@ -28,223 +42,161 @@ class HomeView extends GetView<HomeController> {
   }
 
   Widget _buildObx(BuildContext context) {
-    return
-        // Obx(() =>
-        Column(
+    return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        _buildLogo(context),
-        SizedBox(height: 12.h),
         _buildBody(context),
-        SizedBox(height: 20.h),
-        _buildMadeBy(context),
       ],
-      // ),
-    );
-  }
-
-  Widget _buildLogo(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 35),
-      child: Column(
-        children: [
-          Image.asset(
-            AppImages.logo,
-            width: 80,
-          ),
-          Image.asset(
-            AppImages.title,
-          ),
-        ],
-      ),
     );
   }
 
   Widget _buildBody(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 35),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              GestureDetector(
-                onTap: () => controller.navigateToFrame(),
-                child: Container(
-                  width: 60.w,
-                  height: 10.h,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-                  decoration: BoxDecoration(
-                    color: AppColors.primary,
-                    borderRadius: BorderRadius.circular(15),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.1),
-                        blurRadius: 10,
-                        offset: const Offset(0, 5),
-                      ),
-                    ],
+          GestureDetector(
+            // onTap: () => controller.navigateToFrame(),
+            onTap: () {
+              _showComingSoon(context);
+            },
+            child: Container(
+              width: Get.width,
+              height: 10.h,
+              decoration: BoxDecoration(
+                color: AppColors.primary,
+                borderRadius: BorderRadius.circular(16),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 10,
+                    offset: const Offset(0, 5),
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.only(top: 14, left: 14),
-                        child: Align(
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                            "Chỉnh sửa",
-                            // controller.title.value,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 18,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(bottom: 14),
-                        child: Align(
-                          alignment: Alignment.bottomRight,
-                          child: Image.asset(
-                            AppImages.frame_assets,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      )
-                    ],
+                ],
+              ),
+              child: const Center(
+                child: Text(
+                  "Chỉnh sửa",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 18,
                   ),
                 ),
               ),
-              Container(
-                width: 20.w,
-                height: 10.h,
-                decoration: BoxDecoration(
-                  color: AppColors.third,
-                  borderRadius: BorderRadius.circular(22),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      blurRadius: 10,
-                      offset: const Offset(0, 5),
-                    ),
-                  ],
-                ),
-                child: Center(
-                  child: Image.asset(
-                    AppImages.hold_image,
-                    fit: BoxFit.cover,
-                    width: 6.w,
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
           SizedBox(height: 2.h),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                width: 20.w,
-                height: 10.h,
-                decoration: BoxDecoration(
-                  color: AppColors.third,
-                  borderRadius: BorderRadius.circular(22),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      blurRadius: 10,
-                      offset: const Offset(0, 5),
-                    ),
-                  ],
-                ),
-                child: Center(
-                  child: Image.asset(
-                    AppImages.hold_image,
-                    fit: BoxFit.cover,
-                    width: 6.w,
+          GestureDetector(
+            onTap: () {
+              _showComingSoon(context);
+            },
+            child: Container(
+              width: Get.width,
+              height: 10.h,
+              decoration: BoxDecoration(
+                color: AppColors.secondary,
+                borderRadius: BorderRadius.circular(16),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 10,
+                    offset: const Offset(0, 5),
+                  ),
+                ],
+              ),
+              child: const Center(
+                child: Text(
+                  'Ghép hình',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 18,
                   ),
                 ),
               ),
-              GestureDetector(
-                onTap: () => controller.navigateToAlbum(),
-                child: Container(
-                  width: 60.w,
-                  height: 10.h,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
-                  decoration: BoxDecoration(
-                    color: AppColors.secondary,
-                    borderRadius: BorderRadius.circular(22),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.1),
-                        blurRadius: 10,
-                        offset: const Offset(0, 5),
-                      ),
-                    ],
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Align(
-                        alignment: Alignment.bottomLeft,
-                        child: Image.asset(
-                          AppImages.frame_album,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      const Align(
-                        alignment: Alignment.topRight,
-                        child: Text(
-                          'Ghép hình',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              )
-            ],
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildMadeBy(BuildContext context) {
-    return const Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          'Made with ',
-          style: TextStyle(
-            fontSize: 14,
-            color: Color(0xFF666666),
+  void _showComingSoon(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return Dialog(
+          backgroundColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
           ),
-        ),
-        Icon(
-          Icons.favorite,
-          color: Colors.red,
-          size: 16,
-        ),
-        Text(
-          ' from Vietnam',
-          style: TextStyle(
-            fontSize: 14,
-            color: Color(0xFF666666),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Coming soon',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.primary,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                const Text(
+                  'Chức năng đang phát triển',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.black54,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                GestureDetector(
+                  onTap: () {
+                    Get.back();
+                  },
+                  child: Container(
+                    width: Get.width,
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    decoration: BoxDecoration(
+                      color: AppColors.primary,
+                      borderRadius: BorderRadius.circular(8),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 10,
+                          offset: const Offset(0, 5),
+                        ),
+                      ],
+                    ),
+                    child: const Center(
+                      child: Text(
+                        "Quay lại sau",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-      ],
+        );
+      },
     );
   }
 }

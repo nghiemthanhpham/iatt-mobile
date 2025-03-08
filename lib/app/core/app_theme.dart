@@ -5,7 +5,7 @@ class AppTheme {
   
   static ThemeData get light => ThemeData(
         useMaterial3: true,
-        fontFamily: "Pretendard",
+        fontFamily: "PlusJakartaSans",
         colorScheme: ColorScheme.fromSeed(
           seedColor: AppColors.primary,
           brightness: Brightness.light,
@@ -14,7 +14,7 @@ class AppTheme {
 
   static ThemeData get dark => ThemeData(
         useMaterial3: true,
-        fontFamily: "Pretendard",
+        fontFamily: "PlusJakartaSans",
         colorScheme: ColorScheme.fromSeed(
           seedColor: AppColors.primary,
           brightness: Brightness.dark,

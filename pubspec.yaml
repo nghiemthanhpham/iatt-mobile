@@ -36,17 +36,18 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   fonts:
-    - family: Pretendard
+    - family: PlusJakartaSans
       fonts:
-        - asset: assets/fonts/Pretendard/Pretendard-Black.otf
-        - asset: assets/fonts/Pretendard/Pretendard-Bold.otf
-        - asset: assets/fonts/Pretendard/Pretendard-ExtraBold.otf
-        - asset: assets/fonts/Pretendard/Pretendard-ExtraLight.otf
-        - asset: assets/fonts/Pretendard/Pretendard-Light.otf
-        - asset: assets/fonts/Pretendard/Pretendard-Medium.otf
-        - asset: assets/fonts/Pretendard/Pretendard-Regular.otf
-        - asset: assets/fonts/Pretendard/Pretendard-SemiBold.otf
-        - asset: assets/fonts/Pretendard/Pretendard-Thin.otf
+        # - asset: assets/fonts/PlusJakartaSans/PlusJakartaSans-Black.otf
+        - asset: assets/fonts/PlusJakartaSans/PlusJakartaSans-Bold.ttf
+        - asset: assets/fonts/PlusJakartaSans/PlusJakartaSans-BoldItalic.ttf
+        - asset: assets/fonts/PlusJakartaSans/PlusJakartaSans-ExtraBold.ttf
+        - asset: assets/fonts/PlusJakartaSans/PlusJakartaSans-ExtraLight.ttf
+        - asset: assets/fonts/PlusJakartaSans/PlusJakartaSans-Light.ttf
+        - asset: assets/fonts/PlusJakartaSans/PlusJakartaSans-Medium.ttf
+        - asset: assets/fonts/PlusJakartaSans/PlusJakartaSans-Regular.ttf
+        - asset: assets/fonts/PlusJakartaSans/PlusJakartaSans-SemiBold.ttf
+        # - asset: assets/fonts/PlusJakartaSans/PlusJakartaSans-Thin.otf
   assets:
     # - .env
     - assets/images/
