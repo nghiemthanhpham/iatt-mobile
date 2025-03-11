@@ -57,10 +57,7 @@ class HomeView extends GetView<HomeController> {
       child: Column(
         children: [
           GestureDetector(
-            // onTap: () => controller.navigateToFrame(),
-            onTap: () {
-              _showComingSoon(context);
-            },
+            onTap: () => controller.navigateToFrame(),
             child: Container(
               width: Get.width,
               height: 10.h,
@@ -89,9 +86,7 @@ class HomeView extends GetView<HomeController> {
           ),
           SizedBox(height: 2.h),
           GestureDetector(
-            onTap: () {
-              _showComingSoon(context);
-            },
+            onTap: () => controller.navigateToAlbum(),
             child: Container(
               width: Get.width,
               height: 10.h,

@@ -19,28 +19,28 @@ class AppPages {
       page: () => const BeginView(),
       binding: BeginBinding(),
       transition: Transition.fade,
-      transitionDuration: const Duration(milliseconds: 300),
+      transitionDuration: const Duration(milliseconds: 100),
     ),
     GetPage(
       name: Routes.HOME,
       page: () => const HomeView(),
       binding: HomeBinding(),
       transition: Transition.fade,
-      transitionDuration: const Duration(milliseconds: 300),
+      transitionDuration: const Duration(milliseconds: 100),
     ),
     GetPage(
       name: Routes.FRAME,
       page: () => const FrameView(),
       binding: FrameBinding(),
       transition: Transition.fade,
-      transitionDuration: const Duration(milliseconds: 300),
+      transitionDuration: const Duration(milliseconds: 100),
     ),
     GetPage(
       name: Routes.ALBUM,
       page: () => const AlbumView(),
       binding: AlbumBinding(),
       transition: Transition.fade,
-      transitionDuration: const Duration(milliseconds: 300),
+      transitionDuration: const Duration(milliseconds: 100),
     ),
   ];
 }

@@ -8,7 +8,7 @@ plugins {
 android {
     namespace = "com.example.iatt"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    ndkVersion = 26
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -30,11 +30,18 @@ android {
         versionName = flutter.versionName
     }
 
+    signingConfigs {
+        release {
+            storeFile file("/Users/nghiempt/Working/FARMCODE/inanhtructuyen/iatt-mobile/android/iatt.jks")
+            storePassword "123456"
+            keyAlias "eximbank"
+            keyPassword "123456"
+        }
+    }
+
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.debug
+            signingConfig = signingConfigs.release
         }
     }
 }

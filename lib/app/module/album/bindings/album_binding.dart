@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import '../controllers/album_controller.dart';
+import 'package:iatt/app/module/album/controllers/album_controller.dart';
 
 class AlbumBinding extends Bindings {
   @override

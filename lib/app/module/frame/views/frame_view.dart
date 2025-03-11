@@ -1,141 +1,109 @@
-import 'package:iatt/app/core/app_images.dart';
+// ignore_for_file: deprecated_member_use
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:iatt/app/module/frame/views/tabs/first_tab.dart';
-import 'package:iatt/app/module/frame/views/tabs/last_tab.dart';
-import 'package:iatt/app/module/frame/views/tabs/second_tab.dart';
-import 'package:iatt/app/module/frame/views/tabs/third_tab.dart';
-import '../controllers/frame_controller.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:iatt/app/module/frame/controllers/frame_controller.dart';
 
 class FrameView extends GetView<FrameController> {
   const FrameView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Stack(
-        children: [
-          Positioned.fill(
-            child: Image.asset(
-              AppImages.background,
-              fit: BoxFit.cover,
-              opacity: const AlwaysStoppedAnimation(0.5),
-            ),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          centerTitle: true,
+          systemOverlayStyle: const SystemUiOverlayStyle(
+            statusBarColor: Colors.transparent,
+            statusBarIconBrightness: Brightness.dark,
+            statusBarBrightness: Brightness.light,
           ),
-          _buildBody(),
-        ],
-      ),
-      bottomNavigationBar: _buildBottomNav(),
-    );
-  }
-
-  Widget _buildBody() {
-    return Obx(
-      () => IndexedStack(
-        index: controller.selectedIndex.value,
-        children: const [
-          FirstTab(),
-          SecondTab(),
-          ThirdTab(),
-          LastTab(),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildBottomNav() {
-    return Obx(
-      () => Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-        decoration: BoxDecoration(
-          color: Colors.transparent,
-          border: Border(
-            top: BorderSide(
-              color: Colors.grey[200]!,
-              width: 1,
+          automaticallyImplyLeading: true,
+          iconTheme: const IconThemeData(color: Colors.black),
+          title: const Text(
+            "Chỉnh sửa hình ảnh",
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.w600,
+              fontSize: 18,
             ),
           ),
         ),
-        child: BottomNavigationBar(
-          currentIndex: controller.selectedIndex.value,
-          onTap: controller.changePage,
-          type: BottomNavigationBarType.fixed,
-          selectedItemColor: const Color.fromARGB(255, 4, 4, 4),
-          unselectedItemColor: Colors.grey,
-          backgroundColor: Colors.transparent,
-          selectedLabelStyle: _buildTextStyle(),
-          unselectedLabelStyle: _buildTextStyle(),
-          iconSize: 24,
-          selectedFontSize: 10,
-          unselectedFontSize: 10,
-          showSelectedLabels: true,
-          showUnselectedLabels: true,
-          elevation: 0,
-          enableFeedback: true,
-          landscapeLayout: BottomNavigationBarLandscapeLayout.centered,
-          items: _buildNavigationItems(),
+        backgroundColor: Colors.white,
+        body: Column(
+          children: [
+            Obx(() => controller.progress.value < 100
+              ? LinearProgressIndicator(
+                  value: controller.progress.value / 100,
+                  backgroundColor: Colors.grey[200],
+                  valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
+                )
+              : const SizedBox.shrink()
+            ),
+            Expanded(
+              child: InAppWebView(
+                initialUrlRequest: URLRequest(
+                  url: WebUri('https://www.inanhtructuyen.com/app-frame'),
+                ),
+                initialOptions: InAppWebViewGroupOptions(
+                  crossPlatform: InAppWebViewOptions(
+                    useShouldOverrideUrlLoading: true,
+                    mediaPlaybackRequiresUserGesture: false,
+                    javaScriptEnabled: true,
+                    useOnLoadResource: true,
+                    useOnDownloadStart: true,
+                  ),
+                  android: AndroidInAppWebViewOptions(
+                    useHybridComposition: true,
+                    domStorageEnabled: true,
+                    databaseEnabled: true,
+                  ),
+                  ios: IOSInAppWebViewOptions(
+                    allowsInlineMediaPlayback: true,
+                  ),
+                ),
+                onWebViewCreated: (InAppWebViewController webViewController) {
+                  controller.webViewController = webViewController;
+                },
+                onLoadStart: (InAppWebViewController controller, Uri? url) {
+                  if (kDebugMode) {
+                    print("DEBUG: Bắt đầu tải trang: ${url?.toString()}");
+                  }
+                },
+                onLoadStop: (InAppWebViewController controller, Uri? url) {
+                  if (kDebugMode) {
+                    print("DEBUG: Đã tải xong trang: ${url?.toString()}");
+                  }
+                  controller.evaluateJavascript(source: """
+                    console.log('Document ready state: ' + document.readyState);
+                    console.log('Body content: ' + document.body.innerHTML.substring(0, 100));
+                  """);
+                },
+                onLoadError: (InAppWebViewController controller, Uri? url, int code, String message) {
+                  if (kDebugMode) {
+                    print("DEBUG: Lỗi tải trang: $code - $message");
+                  }
+                },
+                onProgressChanged: (InAppWebViewController controller, int progress) {
+                  if (kDebugMode) {
+                    print("DEBUG: Tiến trình tải: $progress%");
+                  }
+                  this.controller.progress.value = progress;
+                },
+                onReceivedHttpError: (controller, request, errorResponse) {
+                  if (kDebugMode) {
+                    print("DEBUG: HTTP Error: ${errorResponse.statusCode} - ${request.url}");
+                  }
+                },
+              ),
+            ),
+          ],
         ),
       ),
-    );
-  }
-
-  TextStyle _buildTextStyle() {
-    return const TextStyle(
-      fontSize: 10,
-      fontWeight: FontWeight.w500,
-      height: 1.5,
-    );
-  }
-
-  List<BottomNavigationBarItem> _buildNavigationItems() {
-    return [
-      _buildNavigationItem(
-        icon: AppImages.func_1,
-        activeIcon: AppImages.func_1_action,
-        label: 'Mịn da',
-      ),
-      _buildNavigationItem(
-        icon: AppImages.func_2,
-        activeIcon: AppImages.func_2_action,
-        label: 'Chất lượng',
-      ),
-      _buildNavigationItem(
-        icon: AppImages.func_3,
-        activeIcon: AppImages.func_3_action,
-        label: 'Xoá phông',
-      ),
-      _buildNavigationItem(
-        icon: AppImages.func_4,
-        activeIcon: AppImages.func_4_action,
-        label: 'Tạo với A.I',
-      ),
-    ];
-  }
-
-  BottomNavigationBarItem _buildNavigationItem({
-    required String icon,
-    required String activeIcon,
-    required String label,
-  }) {
-    return BottomNavigationBarItem(
-      icon: Builder(
-        builder: (context) => Image.asset(
-          icon,
-          width: 24,
-          height: 24,
-          color: Theme.of(context).unselectedWidgetColor,
-        ),
-      ),
-      activeIcon: Builder(
-        builder: (context) => Image.asset(
-          activeIcon,
-          width: 24,
-          height: 24,
-        ),
-      ),
-      label: label,
     );
   }
 }
